@@ -1,0 +1,72 @@
+# ========================
+# Node / React Native
+# ========================
+# Node modules
+Frontend/node_modules/
+
+# Bundler / Metro cache
+Frontend/.bundle/
+Frontend/.watchmanconfig
+Frontend/.expo/
+Frontend/android/app/build/
+Frontend/ios/Pods/
+Frontend/ios/build/
+
+# Logs
+Frontend/npm-debug.log*
+Frontend/yarn-error.log*
+Frontend/yarn-debug.log*
+
+# Environment variables
+Frontend/.env
+Frontend/.env.local
+Frontend/.env.*.local
+
+# IDE / Editor
+Frontend/.vscode/
+Frontend/.idea/
+Frontend/*.iml
+
+# ========================
+# Python / FastAPI Backend
+# ========================
+# Virtual environment
+Backend/venv/
+
+# Python cache and compiled files
+Backend/__pycache__/
+Backend/*.pyc
+Backend/*.pyo
+Backend/*.pyd
+
+# Environment files
+Backend/.env
+
+# SQLite / DB files
+Backend/*.sqlite3
+Backend/*.db
+
+# Logs
+Backend/*.log
+
+# Alembic
+Backend/alembic/versions/
+
+# Python build/dist
+Backend/build/
+Backend/dist/
+Backend/*.egg-info/
+
+# Docker files (optional, if you don’t want them in repo)
+docker-compose.override.yml
+docker-compose.yml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ========================
+# Misc / other
+# ========================
+*.swp
+*.swo

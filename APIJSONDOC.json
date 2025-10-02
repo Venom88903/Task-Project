@@ -1,0 +1,366 @@
+	
+openapi	"3.1.0"
+info	
+title	"Task Project API"
+version	"0.1.0"
+paths	
+/auth/register	
+post	
+tags	
+0	"Authentication"
+summary	"Register"
+operationId	"register_auth_register_post"
+requestBody	
+content	
+application/json	
+schema	
+$ref	"#/components/schemas/UserCreate"
+required	true
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/UserOut" }
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+/auth/login	
+post	
+tags	
+0	"Authentication"
+summary	"Login"
+operationId	"login_auth_login_post"
+requestBody	
+content	
+application/x-www-form-urlencoded	
+schema	
+$ref	"#/components/schemas/Body_login_auth_login_post"
+required	true
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/Token" }
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+/notes/	
+get	
+tags	
+0	"Notes"
+summary	"Get Notes"
+operationId	"get_notes_notes__get"
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{ type: "array", title: "Response Get Notes Notes  Get", items: {…} }
+security	
+0	
+OAuth2PasswordBearer	[]
+post	
+tags	
+0	"Notes"
+summary	"Create Note"
+operationId	"create_note_notes__post"
+requestBody	
+content	
+application/json	
+schema	
+$ref	"#/components/schemas/NoteCreate"
+required	true
+responses	
+201	
+description	"Successful Response"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/NoteOut" }
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+security	
+0	
+OAuth2PasswordBearer	[]
+/notes/{note_id}	
+get	
+tags	
+0	"Notes"
+summary	"Get Note"
+operationId	"get_note_notes__note_id__get"
+security	
+0	
+OAuth2PasswordBearer	[]
+parameters	
+0	
+name	"note_id"
+in	"path"
+required	true
+schema	
+type	"integer"
+title	"Note Id"
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/NoteOut" }
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+put	
+tags	
+0	"Notes"
+summary	"Update Note"
+operationId	"update_note_notes__note_id__put"
+security	
+0	
+OAuth2PasswordBearer	[]
+parameters	
+0	
+name	"note_id"
+in	"path"
+required	true
+schema	
+type	"integer"
+title	"Note Id"
+requestBody	
+required	true
+content	
+application/json	
+schema	
+$ref	"#/components/schemas/NoteCreate"
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/NoteOut" }
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+delete	
+tags	
+0	"Notes"
+summary	"Delete Note"
+operationId	"delete_note_notes__note_id__delete"
+security	
+0	
+OAuth2PasswordBearer	[]
+parameters	
+0	
+name	"note_id"
+in	"path"
+required	true
+schema	
+type	"integer"
+title	"Note Id"
+responses	
+204	
+description	"Successful Response"
+422	
+description	"Validation Error"
+content	
+application/json	
+schema	{ "$ref": "#/components/schemas/HTTPValidationError" }
+/	
+get	
+summary	"Root"
+operationId	"root__get"
+responses	
+200	
+description	"Successful Response"
+content	
+application/json	
+schema	{}
+components	
+schemas	
+Body_login_auth_login_post	
+properties	
+grant_type	
+anyOf	
+0	
+type	"string"
+pattern	"^password$"
+1	
+type	"null"
+title	"Grant Type"
+username	
+type	"string"
+title	"Username"
+password	
+type	"string"
+format	"password"
+title	"Password"
+scope	
+type	"string"
+title	"Scope"
+default	""
+client_id	
+anyOf	
+0	
+type	"string"
+1	
+type	"null"
+title	"Client Id"
+client_secret	
+anyOf	
+0	
+type	"string"
+1	
+type	"null"
+format	"password"
+title	"Client Secret"
+type	"object"
+required	
+0	"username"
+1	"password"
+title	"Body_login_auth_login_post"
+HTTPValidationError	
+properties	
+detail	
+items	
+$ref	"#/components/schemas/ValidationError"
+type	"array"
+title	"Detail"
+type	"object"
+title	"HTTPValidationError"
+NoteCreate	
+properties	
+title	
+type	"string"
+title	"Title"
+content	
+anyOf	
+0	
+type	"string"
+1	
+type	"null"
+title	"Content"
+type	"object"
+required	
+0	"title"
+title	"NoteCreate"
+NoteOut	
+properties	
+id	
+type	"integer"
+title	"Id"
+title	
+type	"string"
+title	"Title"
+content	
+anyOf	
+0	
+type	"string"
+1	
+type	"null"
+title	"Content"
+owner_id	
+type	"integer"
+title	"Owner Id"
+created_at	
+type	"string"
+format	"date-time"
+title	"Created At"
+updated_at	
+type	"string"
+format	"date-time"
+title	"Updated At"
+type	"object"
+required	
+0	"id"
+1	"title"
+2	"content"
+3	"owner_id"
+4	"created_at"
+5	"updated_at"
+title	"NoteOut"
+Token	
+properties	
+access_token	
+type	"string"
+title	"Access Token"
+token_type	
+type	"string"
+title	"Token Type"
+default	"bearer"
+type	"object"
+required	
+0	"access_token"
+title	"Token"
+UserCreate	
+properties	
+email	
+type	"string"
+format	"email"
+title	"Email"
+password	
+type	"string"
+maxLength	72
+minLength	6
+title	"Password"
+type	"object"
+required	
+0	"email"
+1	"password"
+title	"UserCreate"
+UserOut	
+properties	
+id	
+type	"integer"
+title	"Id"
+email	
+type	"string"
+format	"email"
+title	"Email"
+created_at	
+type	"string"
+format	"date-time"
+title	"Created At"
+type	"object"
+required	
+0	"id"
+1	"email"
+2	"created_at"
+title	"UserOut"
+ValidationError	
+properties	
+loc	
+items	
+anyOf	
+0	{ type: "string" }
+1	{ type: "integer" }
+type	"array"
+title	"Location"
+msg	
+type	"string"
+title	"Message"
+type	
+type	"string"
+title	"Error Type"
+type	"object"
+required	
+0	"loc"
+1	"msg"
+2	"type"
+title	"ValidationError"
+securitySchemes	
+OAuth2PasswordBearer	
+type	"oauth2"
+flows	
+password	
+scopes	{}
+tokenUrl	"/auth/login"
